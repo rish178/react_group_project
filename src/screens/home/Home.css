@@ -2,3 +2,16 @@
     color : black;
     font-size: 10px;
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flex-container>div {
+    margin: 16px;
+  }
+  .released-movie-grid-item {
+    margin: 15px;
+  }
+  
