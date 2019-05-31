@@ -68,8 +68,9 @@ const styles = theme => ({
   },
   gridList: {
     width: 2000,
-    height: 2000
-  }
+    height: "auto"
+  },
+  
 });
 
 class Home extends Component {
@@ -81,7 +82,9 @@ class Home extends Component {
       apidata: [],
       favColor: 0,
       commentFlag: 0,
-      count: 0
+      count: 0,
+      id:[0,0,0,0,0,0,0,0,0,0,0,0],
+      comments:[]
     };
   }
 
@@ -102,47 +105,82 @@ class Home extends Component {
         newState.apidata = JSON.parse(this.responseText).data;
         that.setState(newState);
         console.log(that.state.apidata[1]);
-      }
+
+       }
     };
 
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-    that.setState({
-      //Setting the value of the date time
-      date:
-        date + "/" + month + "/" + year + " " + hours + ":" + min + ":" + sec
-    });
+ 
   }
-  fillColorHandler = () => {
-    this.setState({ favColor: 1 });
+
+  fillColorHandler = (imageCount,imageId)  => {
+    let newState=this.state;
+    let that=this
+    newState.apidata.map(function(dat){
+      if(dat.id===imageId){
+      
+       dat.likes.count+=1;
+       newState.id[imageCount]=1;
+       that.setState(newState);
+       console.log(that.state.id);
+       
+      
+      
+     }
+     else{
+       console.log("test");
+       
+     }
+      
+
+      }
+    );
+    
+  //  this.setState(newState);
+   
   };
-  outlineColorHandler = () => {
-    this.setState({ favColor: 0 });
-  };
+  outlineColorHandler = (imageCount,imageId) => {
+    let newState=this.state;
+    
+    let that=this
+    newState.apidata.map(function(dat){
+      if(dat.id===imageId){
+      
+        dat.likes.count-=1;
+        newState.id[imageCount]=0
+       that.setState(newState);
+     
+      
+     }
+     else{
+       console.log("test");
+       
+     }
+  })}
 
   commentHandler = (e, value) => {
-    this.setState({ comment: e.target.value });
+    let comments = this.state.comments
+    comments.push(e.target.value )
+    this.setState({ comments: comments });
     console.log(this.state.comment);
   };
-  putComment = time => {
+  putComment = (e) => {
+    e.preventDefault();
     this.setState({ commentFlag: 1 });
   };
 
   render() {
     const { classes } = this.props;
     let apidata = this.state.apidata;
-
+   
     return (
       <div>
         <div className={classes.root}>
-          <GridList cellHeight={600} cols={2} className={classes.gridList}>
-            {apidata.map(val => (
+        <GridList cellHeight={600} cols={2} className={classes.gridList}> 
+            {apidata.map(val => ( 
+              console.log(val.id),
+              
               <GridListTile className="gridtile" key={val.id}>
-                <Card className={classes.card} key={val.id}>
+                <Card className={classes.card} key={val.id} >
                   <CardHeader
                     avatar={
                       <Avatar
@@ -163,17 +201,20 @@ class Home extends Component {
                     <Typography component="p">{val.caption.text}</Typography>
                   </CardContent>
                   <CardActions>
-                    {this.state.favColor === 0 && (
+                    { this.state.id[val.likes.count-1] === 0 && (
+
                       <IconButton
-                        onClick={this.fillColorHandler}
+                        onClick={this.fillColorHandler.bind(this,val.likes.count,val.id)}
                         aria-label="Add to favorites"
+                        key={val.id}
                       >
                         <FavoriteIcon />
                       </IconButton>
                     )}
-                    {this.state.favColor === 1 && (
+                    {  this.state.id[val.likes.count-1] === 1 && (
+
                       <IconButton
-                        onClick={this.outlineColorHandler}
+                        onClick={this.outlineColorHandler.bind(this,val.likes.count,val.id)}
                         aria-label="Add to favorites"
                         style={{ color: "#b20505" }}
                       >
@@ -182,32 +223,37 @@ class Home extends Component {
                     )}
                     <Typography className={classes.test}>
                       {val.likes.count} likes
+                    
                     </Typography>
                   </CardActions>
                   {this.state.commentFlag === 1 && (
                     <Typography className={classes.test}>
-                      {this.state.comment}
+                     <span>{this.state.comments}</span>
                     </Typography>
                   )}
-                  <form className="subscriber-form" onSubmit={this.putComment}>
+                  <form className="subscriber-form" onSubmit={this.putComment.bind(this)}>
                     <TextField
                       label="Add a comment"
                       className={classes.textField}
                       margin="normal"
                       onChange={this.commentHandler}
+                      defaultValue=""
                     />
+                 
                     <Button
                       variant="contained"
                       color="primary"
                       className={classes.button}
+                      onClick={this.putComment}
                     >
                       ADD
                     </Button>
                   </form>
                 </Card>
               </GridListTile>
+             
             ))}
-          </GridList>
+            </GridList>
         </div>
       </div>
     );

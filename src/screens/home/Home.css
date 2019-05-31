@@ -14,4 +14,14 @@
   .released-movie-grid-item {
     margin: 15px;
   }
+  .custom-btn {
+    padding: 10px;
+    border: none;
+    margin-right: 10px;
+    text-transform: uppercase;
+    width: 80px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+  }
   
