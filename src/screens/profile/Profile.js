@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './profile.css';
+import './Profile.css';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import Modal from '@material-ui/core/Modal';
@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 import ImagePosts from './image-posts';
+import Header from '../../common/header/Header'
 
 class ProfileInfo extends React.Component{
 
@@ -78,6 +79,9 @@ class ProfileInfo extends React.Component{
     render(){        
         return(
             <div>
+            <Header showSearch="false" showProfile="true"/>
+            <br />
+            <br />
             <div className='prof-main-container'>
                 <Modal open={this.state.openOrCloseModal}
                     aria-labelledby="simple-modal-title"

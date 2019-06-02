@@ -87,8 +87,10 @@ class ImagePosts extends React.Component{
         this.setState({currentComment:cmnt.target.value});
     }
 
-    addCommentHandler = () => {        
-        this.setState({comments:this.state.comments.concat(this.state.currentComment)});
+    addCommentHandler = () => {
+        if(this.state.currentComment !== '') {
+            this.setState({comments:this.state.comments.concat(this.state.currentComment),currentComment:''});
+        }
     }
 
     componentWillMount() {
@@ -205,7 +207,7 @@ class ImagePosts extends React.Component{
                                             className={classes.textField}
                                             margin="normal"
                                             onChange={this.setCommentHandler}
-                                            defaultValue=""
+                                            value={this.state.currentComment}
                                         />                                
                                         <Button
                                             variant="contained"
