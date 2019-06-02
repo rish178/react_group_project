@@ -1,0 +1,94 @@
+.prof-main-container {
+    display: flex; 
+    /* background-color: #5995DA;  Blue */
+    padding: 20px 0;   
+}
+  
+.prof-items-container {
+    border: 1px solid #fff;
+    width: 100%;
+    display: flex;
+    /* justify-content: space-around; */
+    padding: 0% 20%;
+    /* padding-left: 500px; */
+}
+
+.prof-info-data-container{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    margin: 0px 40px;
+}
+
+.prof-pic-container{
+    padding: 15px 0px 0px 0px;
+}
+
+.prof-pic{
+    width: 50px;
+    height: 50px;
+}
+
+.posts-follows-item{
+    margin: 0px 60px;
+}
+
+.posts-follows-container{
+    font-size: 11px;
+    margin: 2px 0px;
+}
+
+.full-name-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.full-name{
+    font-size: 12px; 
+    margin: 10px 0px;   
+}
+
+.user-name{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px 0px;
+}
+
+.full-name-edit-btn{
+    margin: 5px 10px;    
+}
+
+.full-name-edit-btn .edit-btn {
+    width: 35px;
+    height: 10px;
+}  
+
+.modal-size {
+    position: fixed;
+    background: white;
+    width: 190px;
+    height: 21%;
+    top: 25%;
+    left: 30%;
+    right: auto;
+    bottom: auto;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);     
+    border-radius: 4px;
+    padding: 15px 30px;                                              
+}
+
+.red {
+    color: red;
+}
+.blue{
+    color: #3f51b5
+}
+
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
