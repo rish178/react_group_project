@@ -15,6 +15,7 @@ import Favorite from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
+import Moment from 'react-moment';
 
 const styles = theme => ({
   card: {
@@ -168,6 +169,18 @@ class Home extends Component {
     this.setState({ commentFlag: 1 });
   };
 
+  captionText = value => {
+    let text = value.split("\n");
+    return (
+        <div>
+          <Typography component="p">{text[0]}</Typography>
+          <Typography variant="subtitle2" color="primary">{text[1]}</Typography>
+      </div>
+      
+      
+      )
+}
+
   render() {
     const { classes } = this.props;
     let apidata = this.state.apidata;
@@ -190,7 +203,7 @@ class Home extends Component {
                       />
                     }
                     title={val.user.username}
-                    subheader={val.caption.created_time}
+                    subheader={<Moment format="DD/MM/YYYY HH:mm" unix>{val.caption.created_time}</Moment>}
                   />
                   <CardMedia
                     className={classes.media}
@@ -198,7 +211,7 @@ class Home extends Component {
                     title={val.caption.text}
                   />
                   <CardContent>
-                    <Typography component="p">{val.caption.text}</Typography>
+                      {this.captionText(val.caption.text)}
                   </CardContent>
                   <CardActions>
                     { this.state.id[val.likes.count-1] === 0 && (
