@@ -112,7 +112,7 @@ function Header(props) {
       <AppBar position="static" style={{backgroundColor:'#263238'}}>
         <Toolbar variant="dense">          
           <Typography className={classes.title} variant="h6" noWrap>
-            Image Viewer
+            <Link href='/home/' className={classes.link}>Image Viewer</Link>
           </Typography>
           {props.showSearch === "true" ?
           <div className={classes.search}>
