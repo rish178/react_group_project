@@ -104,9 +104,7 @@ class Home extends Component {
       if (this.readyState === 4) {
         newState = that.state;
         newState.apidata = JSON.parse(this.responseText).data;
-        that.setState(newState);
-        console.log(that.state.apidata[1]);
-
+        that.setState(newState);       
        }
     };
 
@@ -121,18 +119,8 @@ class Home extends Component {
       
        dat.likes.count+=1;
        newState.id[imageCount]=1;
-       that.setState(newState);
-       console.log(that.state.id);
-       
-      
-      
-     }
-     else{
-       console.log("test");
-       
-     }
-      
-
+       that.setState(newState);     
+     }      
       }
     );
     
@@ -151,18 +139,13 @@ class Home extends Component {
        that.setState(newState);
      
       
-     }
-     else{
-       console.log("test");
-       
-     }
+     }     
   })}
 
   commentHandler = (e, value) => {
     let comments = this.state.comments
     comments.push(e.target.value )
-    this.setState({ comments: comments });
-    console.log(this.state.comment);
+    this.setState({ comments: comments });    
   };
   putComment = (e) => {
     e.preventDefault();
@@ -189,9 +172,7 @@ class Home extends Component {
       <div>
         <div className={classes.root}>
         <GridList cellHeight={600} cols={2} className={classes.gridList}> 
-            {apidata.map(val => ( 
-              console.log(val.id),
-              
+            {apidata.map(val => (                             
               <GridListTile className="gridtile" key={val.id}>
                 <Card className={classes.card} key={val.id} >
                   <CardHeader
