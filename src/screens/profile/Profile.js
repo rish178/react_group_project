@@ -107,20 +107,14 @@ class ProfileInfo extends React.Component{
                     <div className='prof-pic-container'><img src={this.state.profile_pic} className="prof-pic" alt="profile pic" /></div>
                     <div className='prof-info-data-container'>
                         <div className='user-name'>{this.state.username}</div>
-                        <div className='posts-follows-container'>
-                            {/* <span className='posts-follows-item-first'>Posts:6</span>
-                            <span className='posts-follows-item'>Follows:4</span>
-                            <span className='posts-follows-item'>Followed By:6</span> */}
+                        <div className='posts-follows-container'>                            
                             <span>Posts: {this.state.posts}</span>
                             <span className='posts-follows-item'>Follows: {this.state.follows}</span>
                             <span>Followed By: {this.state.followed_by}</span>
                         </div>
                         <div className='full-name-container'>
                             <div className='full-name'>{this.state.fullName}</div>
-                            <div className='full-name-edit-btn'>
-                            {/* <Button variant="fab" color="secondary" size='medium'>
-                                Edit
-                            </Button> */}
+                            <div className='full-name-edit-btn'>                            
                             <Fab color="secondary" aria-label="Edit" className='edit-btn' size='small' onClick={this.openModalHandler}>
                                 <Icon>edit_icon</Icon>
                             </Fab>
