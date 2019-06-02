@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
+import Header from '../../common/header/Header'
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -170,6 +171,9 @@ class Home extends Component {
    
     return (
       <div>
+		<Header showSearch="false" showProfile="true"/>
+        <br />
+        <br />
         <div className={classes.root}>
         <GridList cellHeight={600} cols={2} className={classes.gridList}> 
             {apidata.map(val => (                             
